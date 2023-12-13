@@ -1,9 +1,21 @@
-import React from 'react'
+import { Outlet,Navigate } from "react-router-dom";
 
-function AuthContainer() {
-  return (
-    <div>AuthContainer</div>
-  )
+const AuthContainer = () => {
+  
+  const isAuthenticated = false;
+
+
+    return (
+      <>
+        {isAuthenticated ? (
+          <Navigate to="/"/>
+        ):(
+          <section>
+            <Outlet/>
+          </section>
+        )}
+      </>
+    )
 }
 
 export default AuthContainer
