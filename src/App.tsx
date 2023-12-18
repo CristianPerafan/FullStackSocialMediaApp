@@ -9,6 +9,9 @@ import AuthContainer from './auth/AuthContainer'
 import RootContainer from './root/RootContainer'
 import { Home } from './root/pages'
 
+import { Toaster } from "@/components/ui/toaster"
+
+
 const App = () => {
   return (
     <main className='flex h-screen'>
@@ -24,6 +27,7 @@ const App = () => {
           <Route index element={<Home />} />
         </Route>
       </Routes>
+      <Toaster />
     </main>
   )
 }

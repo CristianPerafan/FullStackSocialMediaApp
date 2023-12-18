@@ -6,6 +6,8 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
 
 import { Button } from "@/components/ui/button"
+import { useToast } from "@/components/ui/use-toast"
+
 import {
   Form,
   FormControl,
@@ -29,6 +31,8 @@ const formSchema = z.object({
 
 function SignupForm() {
 
+  const { toast } = useToast()
+
   const isLoading = false
 
   const form = useForm<z.infer<typeof SignupValidation>>({
@@ -43,7 +47,14 @@ function SignupForm() {
 
   async function onSubmit(values: z.infer<typeof SignupValidation>) {
     const newUser = await createUserAccount(values);
-    console.log(newUser);
+
+    if(!newUser) {
+      return toast({
+        title: "Sign up failed. Please try again later",
+      })
+    }
+
+    
   
   }
 
